@@ -1,0 +1,75 @@
+/* =========================================================
+   base.css — デザイントークン・リセット・共通UI部品
+   （色やボタンなど、アプリ全体で使う土台のスタイル）
+   ========================================================= */
+
+:root{
+  --paper:#FAF4E6;
+  --paper-deep:#F2E8D5;
+  --sand:#E6DAC0;
+  --indigo:#31548C;
+  --indigo-deep:#243E69;
+  --shu:#D9544D;
+  --shu-deep:#B93E38;
+  --matsu:#5E8C61;
+  --ink:#3B342E;
+  --ink-soft:#7A6F63;
+  --tape-pink:rgba(240,170,180,.55);
+  --tape-blue:rgba(150,190,225,.55);
+  --tape-green:rgba(170,210,170,.55);
+  --radius:14px;
+  --shadow:0 2px 10px rgba(59,52,46,.10);
+}
+
+/* ---------- リセット & 基本要素 ---------- */
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:"Zen Maru Gothic",sans-serif;
+  background:var(--paper);
+  background-image:radial-gradient(rgba(59,52,46,.04) 1px, transparent 1px);
+  background-size:22px 22px;
+  color:var(--ink);
+  line-height:1.6;
+  min-height:100vh;
+}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,select,textarea{font-family:inherit;font-size:15px;color:var(--ink)}
+a{color:var(--indigo)}
+
+/* ---------- 見出し・補足テキスト ---------- */
+h2.sec{
+  font-size:16px;font-weight:900;color:var(--indigo);
+  display:flex;align-items:center;gap:8px;margin:6px 0 10px;
+}
+h2.sec::after{content:"";flex:1;border-top:2px dotted var(--sand)}
+.note{font-family:"Yomogi",cursive;color:var(--ink-soft);font-size:13px}
+
+/* ---------- ボタン ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 14px;border-radius:999px;font-weight:700;font-size:14px;
+  background:var(--indigo);color:#fff;box-shadow:0 2px 0 var(--indigo-deep);
+  transition:transform .05s;
+}
+.btn:active{transform:translateY(2px);box-shadow:none}
+.btn.shu{background:var(--shu);box-shadow:0 2px 0 var(--shu-deep)}
+.btn.ghost{background:#fff;color:var(--indigo);border:1.5px solid var(--indigo);box-shadow:none}
+.btn.sm{padding:4px 10px;font-size:12.5px}
+.btn:disabled{opacity:.5;cursor:wait}
+
+/* ---------- 空状態のプレースホルダ ---------- */
+.empty{
+  border:2px dashed var(--sand);border-radius:var(--radius);
+  padding:24px;text-align:center;color:var(--ink-soft);
+  font-family:"Yomogi",cursive;
+}
+
+/* ---------- トースト通知 ---------- */
+.toast{
+  position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(80px);
+  background:var(--ink);color:#fff;padding:9px 18px;border-radius:999px;
+  font-size:13.5px;font-weight:700;opacity:0;transition:all .25s;z-index:9999;
+  pointer-events:none;max-width:90vw;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}

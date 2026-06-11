@@ -1,0 +1,45 @@
+/* =========================================================
+   map.css — ①エリアをえらぶ（地図・地名検索・スポットカード）
+   ========================================================= */
+
+#map{
+  height:340px;border-radius:var(--radius);border:2px solid var(--sand);
+  box-shadow:var(--shadow);z-index:0;
+}
+.map-tools{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.geo-row{display:flex;gap:8px;margin-bottom:10px}
+.geo-row input{
+  flex:1;border:1.5px solid var(--sand);border-radius:10px;padding:8px 12px;outline:none;background:var(--paper);
+}
+.geo-row input:focus{border-color:var(--indigo)}
+
+/* ---------- カテゴリチップ ---------- */
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 12px}
+.chip{
+  padding:5px 12px;border-radius:999px;border:1.5px solid var(--sand);
+  background:var(--paper);font-size:13px;font-weight:700;color:var(--ink-soft);
+}
+.chip.on{border-color:var(--shu);color:var(--shu);background:#FDF1EF}
+
+/* ---------- 検索結果カード ---------- */
+.results{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.spot-card{
+  border:1.5px solid var(--sand);border-radius:var(--radius);
+  background:var(--paper);padding:10px 12px;position:relative;
+}
+.spot-card .cat{
+  display:inline-block;font-size:11px;font-weight:900;color:#fff;
+  border-radius:6px;padding:1px 8px;margin-bottom:4px;
+}
+.cat.yado{background:var(--shu)} .cat.onsen{background:#C77B3F}
+.cat.kanko{background:var(--indigo)} .cat.gurume{background:var(--matsu)}
+.spot-card h3{font-size:15px;font-weight:700;line-height:1.4}
+.spot-links{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0;font-size:12.5px}
+.spot-actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.spot-actions select{
+  border:1.5px solid var(--sand);border-radius:8px;padding:3px 6px;background:#fff;font-size:12.5px;
+}
+
+@media (max-width:640px){
+  #map{height:280px}
+}
