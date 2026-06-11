@@ -1,0 +1,61 @@
+/* =========================================================
+   plan.css — ②プランをつくる（日タブ・チケット風カード・移動リンク）
+   ========================================================= */
+
+.day-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.day-tab{
+  padding:6px 14px;border-radius:999px;border:1.5px solid var(--sand);
+  background:var(--paper);font-weight:700;font-size:13.5px;color:var(--ink-soft);
+}
+.day-tab.on{background:var(--indigo);border-color:var(--indigo);color:#fff}
+.day-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.day-meta input[type=date]{border:1.5px solid var(--sand);border-radius:8px;padding:4px 8px;background:#fff}
+.del-day{color:var(--shu);font-size:12.5px;text-decoration:underline}
+
+/* ---------- チケット風の予定カード ---------- */
+.ticket{
+  position:relative;background:#fff;border:1.5px solid var(--indigo);
+  border-radius:10px;margin:0 0 6px;padding:10px 12px 10px 86px;
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.ticket::before{
+  content:"";position:absolute;left:72px;top:6px;bottom:6px;
+  border-left:2px dashed var(--sand);
+}
+.ticket .punch-l,.ticket .punch-r{
+  position:absolute;width:14px;height:14px;border-radius:50%;
+  background:var(--paper);border:1.5px solid var(--indigo);top:50%;transform:translateY(-50%);
+}
+.punch-l{left:-8px} .punch-r{right:-8px}
+.ticket .t-time{
+  position:absolute;left:0;top:0;bottom:0;width:72px;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(var(--paper-deep),var(--paper));
+}
+.ticket .t-time input{
+  width:62px;border:none;background:transparent;font-weight:900;font-size:15px;
+  color:var(--indigo);text-align:center;outline:none;
+}
+.ticket .t-name{width:100%;border:none;background:transparent;font-weight:700;font-size:15px;outline:none}
+.ticket .t-memo{
+  width:100%;border:none;background:transparent;outline:none;resize:none;
+  font-family:"Yomogi",cursive;font-size:13px;color:var(--ink-soft);line-height:1.5;
+}
+.ticket .t-ops{display:flex;gap:8px;margin-top:4px;font-size:12px;align-items:center;flex-wrap:wrap}
+.ticket .t-ops button{color:var(--ink-soft)}
+.ticket .t-ops button:hover{color:var(--indigo)}
+.ticket .t-ops .rm{color:var(--shu)}
+
+/* ---------- 移動（乗換）リンク ---------- */
+.transit-link{
+  margin:0 0 6px 26px;font-size:12.5px;display:flex;gap:10px;align-items:center;
+  color:var(--ink-soft);
+}
+.transit-link::before{content:"┊";color:var(--sand);font-weight:900}
+.add-stop{margin-top:8px;display:flex;gap:8px;flex-wrap:wrap}
+
+@media (max-width:640px){
+  .ticket{padding-left:78px}
+  .ticket .t-time{width:66px}
+  .ticket::before{left:66px}
+}

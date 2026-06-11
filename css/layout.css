@@ -1,0 +1,78 @@
+/* =========================================================
+   layout.css — アプリ全体の骨組み（ヘッダー・タブ・本体・フッター）
+   ========================================================= */
+
+/* ---------- header ---------- */
+header.app-head{
+  background:var(--indigo);
+  color:#FAF4E6;
+  padding:14px 16px 12px;
+  position:relative;
+  overflow:hidden;
+}
+header.app-head::after{
+  content:"";
+  position:absolute;left:0;right:0;bottom:0;height:6px;
+  background:repeating-linear-gradient(90deg,var(--shu) 0 14px,transparent 14px 28px);
+  opacity:.85;
+}
+.head-inner{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.head-mark{
+  width:46px;height:46px;border-radius:50%;
+  border:2.5px solid var(--shu);
+  color:#FAF4E6;background:var(--shu);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:13px;line-height:1.1;text-align:center;
+  transform:rotate(-8deg);
+  box-shadow:0 0 0 3px rgba(250,244,230,.25);
+  flex:none;
+}
+.head-title{flex:1;min-width:200px}
+.head-title input{
+  width:100%;background:transparent;border:none;border-bottom:1.5px dashed rgba(250,244,230,.5);
+  color:#FAF4E6;font-size:21px;font-weight:700;padding:2px 4px;outline:none;
+}
+.head-title input::placeholder{color:rgba(250,244,230,.55)}
+.head-sub{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.head-sub input{
+  background:rgba(250,244,230,.12);border:1px solid rgba(250,244,230,.35);
+  border-radius:8px;color:#FAF4E6;padding:3px 8px;font-size:13px;outline:none;
+}
+.head-sub input::placeholder{color:rgba(250,244,230,.5)}
+
+/* ---------- tabs ---------- */
+nav.tabs{
+  max-width:980px;margin:14px auto 0;padding:0 12px;
+  display:flex;gap:8px;
+}
+.tab{
+  flex:1;padding:10px 6px 8px;text-align:center;font-weight:700;font-size:14px;
+  border-radius:10px 10px 0 0;color:var(--ink-soft);
+  background:var(--paper-deep);
+  border:1.5px solid var(--sand);border-bottom:none;
+  position:relative;top:1px;
+}
+.tab .tape{
+  position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(-3deg);
+  width:54px;height:14px;border-radius:2px;opacity:0;
+}
+.tab.active{background:#fff;color:var(--indigo);border-color:var(--indigo)}
+.tab.active .tape{opacity:1}
+.tab:nth-child(1) .tape{background:var(--tape-pink)}
+.tab:nth-child(2) .tape{background:var(--tape-blue)}
+.tab:nth-child(3) .tape{background:var(--tape-green)}
+
+/* ---------- main / panes ---------- */
+main{
+  max-width:980px;margin:0 auto 60px;padding:16px 12px;
+  background:#fff;border:1.5px solid var(--indigo);border-radius:0 0 var(--radius) var(--radius);
+  box-shadow:var(--shadow);
+}
+.pane{display:none}
+.pane.active{display:block}
+
+/* ---------- footer ---------- */
+footer.app-foot{
+  text-align:center;color:var(--ink-soft);font-size:12px;padding:10px 0 26px;
+  font-family:"Yomogi",cursive;
+}

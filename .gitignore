@@ -1,0 +1,9 @@
+# 分割前の元ファイル（ローカルのバックアップ。GitHubには上げない）
+index.original.html
+
+# OS / エディタが作る一時ファイル
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.vscode/

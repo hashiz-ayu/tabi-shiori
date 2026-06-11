@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ふたり旅のしおり</title>
+
+<!-- 外部ライブラリ：地図(Leaflet) と Webフォント -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Yomogi&display=swap" rel="stylesheet">
+
+<!-- アプリのスタイル（土台 → レイアウト → 各画面の順） -->
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/map.css">
+<link rel="stylesheet" href="css/plan.css">
+<link rel="stylesheet" href="css/shiori.css">
+</head>
+<body>
+
+<header class="app-head">
+  <div class="head-inner">
+    <div class="head-mark">旅の<br>しおり</div>
+    <div class="head-title">
+      <input id="tripTitle" placeholder="旅のタイトル（例：箱根 ゆったり温泉旅）">
+      <div class="head-sub">
+        <input id="tripDate" placeholder="日程（例：6/20〜6/21）" style="width:170px">
+        <input id="tripMembers" placeholder="メンバー（例：わたし＆きみ）" style="width:170px">
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" data-pane="map"><span class="tape"></span>① エリアをえらぶ</button>
+  <button class="tab" data-pane="plan"><span class="tape"></span>② プランをつくる</button>
+  <button class="tab" data-pane="shiori"><span class="tape"></span>③ しおりをみる</button>
+</nav>
+
+<main>
+  <!-- ===== pane 1 : map ===== -->
+  <section class="pane active" id="pane-map">
+    <h2 class="sec">🗺 行きたいエリアをさがす</h2>
+    <div class="geo-row">
+      <input id="geoInput" placeholder="地名でジャンプ（例：草津温泉 / 由布院 / 城崎）">
+      <button class="btn ghost" id="geoBtn">移動</button>
+    </div>
+    <div id="map"></div>
+    <div class="map-tools">
+      <button class="btn shu" id="searchAreaBtn">📍 いま見えているエリアでさがす</button>
+      <span class="note">地図を「ここ行きたいね〜」の場所に合わせて押してね</span>
+    </div>
+    <div class="chips" id="catChips">
+      <button class="chip on" data-cat="yado">🏮 旅館・ホテル</button>
+      <button class="chip on" data-cat="onsen">♨ 温泉</button>
+      <button class="chip on" data-cat="kanko">⛩ 観光スポット</button>
+      <button class="chip" data-cat="gurume">🍡 グルメ</button>
+    </div>
+    <h2 class="sec">🔎 みつかった場所</h2>
+    <div class="results" id="results">
+      <div class="empty">まだ検索していないよ。<br>地図を動かして「いま見えているエリアでさがす」を押してね ♪</div>
+    </div>
+  </section>
+
+  <!-- ===== pane 2 : plan ===== -->
+  <section class="pane" id="pane-plan">
+    <h2 class="sec">📋 1日のプランをつくる</h2>
+    <div class="day-tabs" id="dayTabs"></div>
+    <div class="day-meta">
+      <label>日付 <input type="date" id="dayDate"></label>
+      <button class="del-day" id="delDayBtn">この日を削除</button>
+    </div>
+    <div id="stopList"></div>
+    <div class="add-stop">
+      <button class="btn" id="addStopBtn">＋ 予定を追加（手入力）</button>
+      <span class="note">スポット検索からも「プランに追加」できるよ</span>
+    </div>
+  </section>
+
+  <!-- ===== pane 3 : shiori ===== -->
+  <section class="pane" id="pane-shiori">
+    <div class="shiori-tools">
+      <button class="btn" onclick="window.print()">🖨 印刷 / PDF保存</button>
+      <span class="note">スマホならこの画面をスクショしてね 📸</span>
+    </div>
+    <div class="shiori" id="shioriView"></div>
+  </section>
+</main>
+
+<footer class="app-foot">― いってらっしゃい、よい旅を ―</footer>
+<div class="toast" id="toast"></div>
+
+<!-- 外部ライブラリ：地図(Leaflet)本体 -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- アプリのスクリプト。下記の順番に依存関係があるため、並びは変えないこと -->
+<script src="js/utils.js"></script>    <!-- 共通ヘルパー -->
+<script src="js/storage.js"></script>  <!-- 保存先 -->
+<script src="js/state.js"></script>    <!-- 状態S・save -->
+<script src="js/shiori.js"></script>   <!-- ③しおり描画 -->
+<script src="js/plan.js"></script>     <!-- ②プラン描画 -->
+<script src="js/map.js"></script>      <!-- ①地図・検索 -->
+<script src="js/app.js"></script>      <!-- 起動・タブ・初期描画 -->
+</body>
+</html>
